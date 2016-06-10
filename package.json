@@ -1,0 +1,23 @@
+{
+  "name": "MonitorLamp",
+  "version": "0.1.0",
+  "description": "Monitoring a lamp with arduino.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ivan Jose Diaz Morales",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "~1.3.5",
+    "express": "~4.13.1",
+    "serialport": "~2.0.5",
+    "swig": "~1.4.2",
+    "crossroads": "~0.12.0"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/ivajo26/monitor_lamp.git"
+  }
+
+}
