@@ -52,10 +52,30 @@ LuminaryClass.prototype.getLuminosity = function() {return this.Luminosity;}
 //Se crea una instancia e inicializa la clase
 var Luminary = new LuminaryClass();
 
+//Lectura del puerto serial y gardado de datos en la clase
 sp.on('data', function(data) {
   var res = data.split(",");
-  console.log(res);
   Luminary.setPhotocell(res[0]);
   Luminary.setLamp(res[1]);
   Luminary.setLuminosity(res[2]);
 });
+
+var sockets = {};
+//Se crea un callback para escuchar conexciones socket
+io.on('connection', function(socket) {
+  sockets[socket.id] = socket;
+  console.log("Clientes conectados ", Object.keys(sockets).length);
+
+  //Funcion para cuando se deconecta un cliente
+  socket.on('disconnect', function() {
+    delete sockets[socket.id];
+    console.log("Cliente Desconectado");
+    console.log("Clientes conectados ", Object.keys(sockets).length);
+  });
+});
+
+setInterval(function(){
+    //Envio de nuevos valores
+    console.log({'photocell': Luminary.getPhotocell(), 'lamp': Luminary.getLamp(), 'luminosity': Luminary.getLuminosity()});
+    io.emit('estado', {'photocell': Luminary.getPhotocell(), 'lamp': Luminary.getLamp(), 'luminosity': Luminary.getLuminosity()});
+}, 1000);
