@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SmartDrip</title>
+
+    <link href="fonts/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    {% block addhead %}{% endblock %}
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <main class="mdl-color--grey-100">
+        <div class="mdl-grid">
+          {% block content %}
+	        {% endblock %}
+        </div>
+      </main>
+    </div>
+    <script src="js/material.min.js"></script>
+    {% block addjs %}{% endblock %}
+  </body>
+</html>
