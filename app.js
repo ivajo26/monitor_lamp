@@ -74,8 +74,13 @@ io.on('connection', function(socket) {
   });
 });
 
+//Se activa la escucha del servidor web por el puerto 300
+http.listen(3000, function() {
+  console.log('Servidor escuchando en puerto 3000');
+});
+
 setInterval(function(){
     //Envio de nuevos valores
     console.log({'photocell': Luminary.getPhotocell(), 'lamp': Luminary.getLamp(), 'luminosity': Luminary.getLuminosity()});
-    io.emit('estado', {'photocell': Luminary.getPhotocell(), 'lamp': Luminary.getLamp(), 'luminosity': Luminary.getLuminosity()});
-}, 1000);
+    io.emit('estado', {'values': [ Luminary.getPhotocell(), Luminary.getLamp(), Luminary.getLuminosity()]});
+}, 500);
