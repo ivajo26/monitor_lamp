@@ -75,7 +75,7 @@ io.on('connection', function(socket) {
 });
 
 //Se activa la escucha del servidor web por el puerto 300
-http.listen(3000, function() {
+http.listen(3001, function() {
   console.log('Servidor escuchando en puerto 3000');
 });
 
