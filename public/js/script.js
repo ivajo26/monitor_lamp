@@ -69,16 +69,36 @@ function percentageVal(val, max) {
 socket.on('estado',function(datos){
   // console.log(datos['values'][0]);
   var gauges = $('.gauge-cont');
-  gauges[0].dataset.percentage = percentageVal(datos['values'][0],2)
-  gauges[1].dataset.percentage = percentageVal(datos['values'][1],2)
-  gauges[2].dataset.percentage = Math.floor(datos['values'][2])
+  gauges[0].dataset.percentage = percentageVal(datos['values'][0],2);
+  gauges[1].dataset.percentage = percentageVal(datos['values'][1],2);
+  gauges[2].dataset.percentage = Math.floor(datos['values'][2]);
+  var a0 = document.getElementById('alert0');
+  var a1 = document.getElementById('alert1');
+  var a2 = document.getElementById('alert2');
+  if (datos['values'][0]>=1 && datos['values'][1]<1) {
+    a0.classList.add('hide');
+    a0.classList.remove('hide');
+  }else {
+    a0.classList.add('hide');
+  }
+  if (datos['values'][0]>=1 && datos['values'][1]<1) {
+    a1.classList.add('hide');
+    a1.classList.remove('hide');
+  }else {
+    a1.classList.add('hide');
+  }
+  if (datos['values'][1]>=1 && datos['values'][2]<60) {
+    a2.classList.add('hide');
+    a2.classList.remove('hide');
+  }else {
+    a2.classList.add('hide');
+  }
   var v0 = $('#value0');
   v0[0].innerHTML = datos['values'][0] ;
   var v1 = $('#value1');
   v1[0].innerHTML = datos['values'][1] ;
   var v2 = $('#value2');
   v2[0].innerHTML = datos['values'][2] ;
-  console.log('cargando');
   setGauge(gauges[0].dataset.percentage, '.sp0', '.poi0');
   setGauge(gauges[1].dataset.percentage, '.sp1', '.poi1');
   setGauge(gauges[2].dataset.percentage, '.sp2', '.poi2');

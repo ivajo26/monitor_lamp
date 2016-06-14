@@ -38,8 +38,20 @@
     Luminosidad - <strong id="value2"></strong> <strong>%</strong>
   </div>
 </div>
+<div id="alerts">
+  <div class="alert hide" id='alert0'>
+    La fotocelda presenta fallos.
+  </div>
 
-<div>
+  <div class="alert hide" id='alert1'>
+    La luminaria presenta fallos para encenderla bombilla.
+  </div>
+
+  <div class="alert hide" id='alert2'>
+    La bombilla presenta fallos en su luminosidad.
+  </div>
+
+</div>
 {% endblock %}
 {% block addjs %}
   <script src="/socket.io/socket.io.js"></script>
