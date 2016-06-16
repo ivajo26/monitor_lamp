@@ -72,22 +72,30 @@ socket.on('estado',function(datos){
   gauges[0].dataset.percentage = percentageVal(datos['values'][0],2);
   gauges[1].dataset.percentage = percentageVal(datos['values'][1],2);
   gauges[2].dataset.percentage = Math.floor(datos['values'][2]);
+  var light = document.getElementById('light');
   var a0 = document.getElementById('alert0');
   var a1 = document.getElementById('alert1');
   var a2 = document.getElementById('alert2');
-  if (datos['values'][0]>=1 && datos['values'][1]<1) {
+  if (datos['values'][0]>=0.7 && datos['values'][1]>=0.7 && datos['values'][2]>=75) {
+    light.classList.remove('red');
+    light.classList.add('yellow');
+  }else {
+    light.classList.remove('yellow');
+    light.classList.add('red');
+  }
+  if (datos['values'][0]>=0.7 && datos['values'][1]<0.7 ) {
     a0.classList.add('hide');
     a0.classList.remove('hide');
   }else {
     a0.classList.add('hide');
   }
-  if (datos['values'][0]>=1 && datos['values'][1]<1) {
+  if (datos['values'][0]>=0.7 && datos['values'][1]<0.7) {
     a1.classList.add('hide');
     a1.classList.remove('hide');
   }else {
     a1.classList.add('hide');
   }
-  if (datos['values'][1]>=1 && datos['values'][2]<60) {
+  if (datos['values'][1]>=1 && datos['values'][2]<75) {
     a2.classList.add('hide');
     a2.classList.remove('hide');
   }else {
